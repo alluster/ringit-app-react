@@ -5,7 +5,7 @@ import Gx from '@tgrx/gx';
 import PropTypes from 'prop-types';
 import { faBookmark, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { Link } from "react-router-dom";
 
 
 const Block = styled.div `
@@ -53,12 +53,13 @@ const ContentBlock = (props) => {
 	useEffect(() => {
 		context.GetRingitByOwner(context.userEmail);
 	}, [])
-	const AccordionContent = context.ringit.map((item) => 
+	const AccordionContent = context.ringit.map((item) => {
+		return (
 			<AccordionBox key={item.id}>
 				<Gx col={10} breakpoint={100}>
-						<a href={`/rinki/${item.id}`}>
+						<Link to={`/rinki/${item.id}`}>
 							<NameLink>{item.name ? item.name : "Taisit unohtaa antaa ringille nimen"} </NameLink>
-						</a>
+						</Link>
 				</Gx>
 				<span style={{ textAlign: "right" }}>
 					<Gx col={2} breakpoint={100} >
@@ -72,6 +73,10 @@ const ContentBlock = (props) => {
 					</Gx>
 				</span>
 			</AccordionBox>
+		)
+		
+	}
+			
 			
 
 			
