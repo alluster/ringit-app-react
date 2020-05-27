@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ringit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+  <style>
+    body, html {
+		height: 100%;
+		background-color: #F5F5F2;
+
+    }
+
+    .login-container {
+		position: relative;
+		height: 100%;
+    }
+
+	.login-box {
+		position: absolute;
+		top: 50%;
+		max-width: 700px;
+		transform: translateY(-50%);
+		padding: 25px;
+		padding-right: 20px;
+		padding-left: 20px;
+		/* border: 0.5px solid gray;
+		border-radius: 15px; */
+ 
+    }
+
+    .login-header {
+      text-align: center;
+      color: #33343C;
+    }
+
+    .login-header img {
+      width: 100px;
+      text-align: center;
+    }
+
+    #error-message {
+      display: none;
+    }
+
+    .form-group label {
+        color: #33343C;
+        
+    }
+    .form-group {
+        margin-top: 30px;
+        
+    }
+	#btn-login{
+		background-color: #275EFE;
+		color: #ffffff;
+		border: none;
+	}
+	#btn-signup {
+		background-color: transparent;
+		border: none;
+		color: #275EFE;
+	}
+  </style>
+<body>
+  <div class="login-container">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
+      <div class="login-header">
+        <img src="https://ringit.herokuapp.com/loader.svg"/>
+        <h1>Tervetuloa</h1>
+        <p>Anna email ja salasana ja kirjaudu. Jos sinulla ei ole tunnusta, paina rekisteröidy.</p>
+      </div>
+      <div id="error-message" class="alert alert-danger"></div>
+      <form onsubmit="return false;" method="post">
+        <div class="form-group">
+         <label for="name">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label for="name">Salasana</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Enter your password">
+        </div>
+        <button
+          type="submit"
+          id="btn-login"
+          class="btn btn-lg btn-primary btn-block">
+          Kirjaudu
+        </button>
+        <div class="login-header">
+        	<h4>tai</h4>
+        </div>
+        <button
+          type="button"
+          id="btn-signup"
+          class="btn btn-lg btn-default btn-block">
+            Rekisteröidy
+        </button>
+       
+      </form>
+    </div>
+  </div>
+
+  <!--[if IE 8]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.5/ie8.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 9]>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/base64.min.js"></script>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/es5-shim.min.js"></script>
+  <![endif]-->
+
+  <script src="https://cdn.auth0.com/js/auth0/9.12/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+
+      var config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@')))
+      );
+
+      var params = Object.assign({
+        /* additional configuration needed for use of custom domains
+        overrides: {
+          __tenant: config.auth0Tenant,
+          __token_issuer: 'YOUR_CUSTOM_DOMAIN'
+        }, */
+        domain: config.auth0Domain,
+        clientID: config.clientID,
+        redirectUri: config.callbackURL,
+        responseType: 'code'
+      }, config.internalOptions);
+
+      var webAuth = new auth0.WebAuth(params);
+
+      var databaseConnection = 'Username-Password-Authentication';
+
+      function login(e) {
+        e.preventDefault();
+        var username = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        webAuth.login({
+          realm: databaseConnection,
+          username: username,
+          password: password
+        }, function(err) {
+          if (err) displayError(err);
+        });
+      }
+
+      function signup() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        webAuth.redirect.signupAndLogin({
+          connection: databaseConnection,
+          email: email,
+          password: password
+        }, function(err) {
+          if (err) displayError(err);
+          console.log(err)
+        });
+      }
+
+
+
+      function displayError(err) {
+        var errorMessage = document.getElementById('error-message');
+        errorMessage.innerHTML = "Jokin ongelma syntyi. Ole hyvä ja kokeile uudestaan";
+        errorMessage.style.display = 'block';
+      }
+
+      document.getElementById('btn-login').addEventListener('click', login);
+
+      document.getElementById('btn-signup').addEventListener('click', signup);
+    });
+  </script>
+</body>
+</html></p>
