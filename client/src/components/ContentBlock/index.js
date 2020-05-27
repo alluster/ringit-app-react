@@ -53,7 +53,7 @@ const ContentBlock = (props) => {
 	useEffect(() => {
 		context.GetRingitByOwner(context.userEmail);
 	}, [])
-	const AccordionContent = context.ringit.map((item, i) => {
+	const HandleData = () => context.ringit.map((item, i) => {
 		return (
 			<AccordionBox key={i}>
 				<Gx col={10} breakpoint={100}>
@@ -82,6 +82,7 @@ const ContentBlock = (props) => {
 			
 		)
 	
+		let AccordionContent = HandleData()
 
 	
 
