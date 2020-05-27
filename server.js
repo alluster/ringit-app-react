@@ -22,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const pool = mysql.createPool({
-	host: process.env.DATABASE_HOST,
-	user: process.env.DATABASE_USERNAME,
-	password: process.env.DATABASE_PASSWORD,
-	database: process.env.DATABASE
+	host: process.env.REACT_APP_DATABASE_HOST,
+	user: process.env.REACT_APP_DATABASE_USERNAME,
+	password: process.env.REACT_APP_DATABASE_PASSWORD,
+	database: process.env.REACT_APP_DATABASE
 });
  
 app.get('/api/getrinkibyid/:id', (req, res) => {
