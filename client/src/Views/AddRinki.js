@@ -103,7 +103,7 @@ const AddRinki = () => {
 		}
 	}
 	const formOptions = context.categories && context.categories.map((item) => 	<option key={item.id} value={item.category}>{item.category}</option>)
-	useEffect(() => {
+	useEffect((context) => {
 		context.getCategories()
 		
 	},[])

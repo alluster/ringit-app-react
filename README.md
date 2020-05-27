@@ -1,6 +1,6 @@
 # Ringit.fi
 
-Ringit.fi service allows users to create groups around services or pbjects. They can invite users to their groups and allow people to reserve them from a calendar.
+Ringit.fi service allows users to create groups around services or projects. They can invite users to their groups and allow people to reserve them from a calendar.
 ## Installation
 
 

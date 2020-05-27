@@ -1,4 +1,4 @@
-import React, { setState, useContext, useState, useEffect } from 'react';
+import React, {  useContext, useState, useEffect } from 'react';
 import Container from '../components/Container';
 import PropTypes from 'prop-types';
 import { AppContext } from '../context/Context';
@@ -64,7 +64,7 @@ const Rinki = (props) => {
 	// }))}
 	
 	
-useEffect(() => {
+useEffect((context, props) => {
 	context.GetRinkiById(props.match.params.id)
 	context.GetRinkiUsers(props.match.params.id)
 	setOwner(context.rinki.owner)

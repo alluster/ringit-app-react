@@ -137,7 +137,7 @@ const Provider = ({children}) => {
         );
     }
     Provider.propTypes = {
-        children: PropTypes.object
+        children: PropTypes.any
      };
 
      export default Provider;

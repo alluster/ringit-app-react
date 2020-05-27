@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { AppContext } from  '../context/Context';
-import axios from 'axios';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom'
 const Input = styled.input`
 	padding: 10px; 

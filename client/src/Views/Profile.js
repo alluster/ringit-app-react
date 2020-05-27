@@ -28,7 +28,6 @@ const AddNewButton = styled(Button) `
 `;
 const Profile = () => {
 	const context = useContext(AppContext)
-
 	const history = useHistory()
 	useEffect(() => {
 		if(!context.userEmail)
