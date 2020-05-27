@@ -10,7 +10,6 @@
 /build
 /dist
 /.next
-firebase.js
 # misc
 .DS_Store
 .env
