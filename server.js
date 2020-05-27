@@ -5,8 +5,8 @@ const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const SQL = require('sql-template-strings')
 // const sslRedirect = require('heroku-ssl-redirect');
-// const bodyParser = require('body-parser')
-
+const bodyParser = require('body-parser')
+const path = require('path')
 app.use(express.static(path.join(__dirname, 'client/build')));
 if(process.env.NODE_ENV === 'production') {  
 	app.use(express.static(path.join(__dirname, 'client/build')));  
