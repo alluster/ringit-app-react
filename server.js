@@ -7,7 +7,8 @@ const SQL = require('sql-template-strings')
 // const sslRedirect = require('heroku-ssl-redirect');
 // const bodyParser = require('body-parser')
 
- 
+app.use(express.static("public"))
+
 const pool = mysql.createPool({
 	host: process.env.DATABASE_HOST,
 	user: process.env.DATABASE_USERNAME,
