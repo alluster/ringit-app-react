@@ -53,9 +53,9 @@ const ContentBlock = (props) => {
 	useEffect(() => {
 		context.GetRingitByOwner(context.userEmail);
 	}, [])
-	const AccordionContent = context.ringit.map((item) => {
+	const AccordionContent = context.ringit.map((item, i) => {
 		return (
-			<AccordionBox key={item.id}>
+			<AccordionBox key={i}>
 				<Gx col={10} breakpoint={100}>
 						<Link to={`/rinki/${item.id}`}>
 							<NameLink>{item.name ? item.name : "Taisit unohtaa antaa ringille nimen"} </NameLink>
@@ -89,9 +89,7 @@ const ContentBlock = (props) => {
 		<div>
 			<h4>{props.blockName || ""}</h4>
 			<Block >
-	
-{AccordionContent}
-
+				{AccordionContent ? AccordionContent :<p>Loading...</p>}
 			</Block>
 		</div>
 		
