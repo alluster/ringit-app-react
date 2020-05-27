@@ -64,7 +64,7 @@ const Rinki = (props) => {
 	// }))}
 	
 	
-useEffect((context, props) => {
+useEffect(( ) => {
 	context.GetRinkiById(props.match.params.id)
 	context.GetRinkiUsers(props.match.params.id)
 	setOwner(context.rinki.owner)
