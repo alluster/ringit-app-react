@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const SQL = require('sql-template-strings')
-// const sslRedirect = require('heroku-ssl-redirect');
+const sslRedirect = require('heroku-ssl-redirect');
 const bodyParser = require('body-parser')
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // 	app.get('*', (req, res) => { 
 // 		res.sendFile('build/index.html', { root: __dirname })	})
 // }
-
+app.use(sslRedirect());
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
