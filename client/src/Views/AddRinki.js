@@ -73,7 +73,7 @@ const AddRinki = () => {
 		try {
 			return await axios.get('/api/addrinki',  {
 				params: {
-					owner: context.userEmail,
+					owner: context.user.email,
 					created: created,
 					name: name,
 					location: location,
@@ -87,9 +87,9 @@ const AddRinki = () => {
 			.then(res => {
 				axios.get('/api/addusertorinki', {
 					params: {
-						id_user: context.userId,
+						id_user: context.user.uid,
 						id_rinki: res.data.insertId,	
-						user_email: context.userEmail
+						user_email: context.user.email
 					}
 				})
 
@@ -108,7 +108,7 @@ const AddRinki = () => {
 		
 	},[])
 	return(
-		<Container>
+		<div>
 			
 				<form onSubmit={handleSubmit} >
 					<select name="category" value={category} onChange={inputChange}>
@@ -123,7 +123,7 @@ const AddRinki = () => {
 					<Input placeholder="Missä rinki sijaitsee" name="location" value={location} onChange={inputChange} type="text" />
 					<SubmitButton onClick={e => handleSubmit(e)}>Lisää rinki</SubmitButton>
 				</form>
-        </Container>
+        </div>
     )
 }
 AddRinki.propTypes = {

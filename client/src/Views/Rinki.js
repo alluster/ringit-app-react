@@ -71,7 +71,7 @@ useEffect(( ) => {
 	// setUserInRinki( context.rinkiUsers.map((item) => (item.user_email === !owner)) )
 }, [])
 	return(
-			<Container>
+			<div>
 				<h1>{ context.rinki.name || "" }</h1>
 				<h5>{ context.rinki.description || ""  }</h5>
 				<h5>{ context.rinki.location || "" }</h5>
@@ -87,7 +87,7 @@ useEffect(( ) => {
 
 					</AccordionContainer>
 					</Accordion>
-			</Container>
+			</div>
 	)
 }
 

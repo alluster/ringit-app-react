@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Container from '../Container';
 import Gx from '@tgrx/gx';
 
 const FooterContent = styled.div`
@@ -66,7 +65,6 @@ const disclaimer = "Certify.com is a service for content creators to tag their w
 const Footer = () => {
     return(
         <FooterContent>
-            <Container>
                 <Gx col={6}>
                     <Column>
                         <ColumnHigh>
@@ -89,7 +87,6 @@ const Footer = () => {
                         </ColumnLowRight>
                     </Column>
                 </Gx>
-            </Container>
         </FooterContent>
     );
 };

@@ -14,7 +14,7 @@ const Provider = ({children}) => {
 	const [ userEmail, setUserEmail ] = useState("")
 	const [ userId, setUserId ] = useState("")
 	const [	error, setError	] = useState("")
-	const [ user, setUser ] = useState(firebase.currentUser)
+	const [user, setUser] = useState(false);
 
 
 
@@ -23,7 +23,6 @@ const Provider = ({children}) => {
 		await firebase.signInWithEmailAndPassword(email, password) 
 		await setUserEmail(firebase.currentUser.email)
 		await setUserId(firebase.currentUser.uid)
-		console.log(firebase.currentUser)
 		}catch(error){
 			setError(error.message)
 		}
@@ -42,16 +41,21 @@ const Provider = ({children}) => {
  	const register = async (email, password) => { await firebase.createUserWithEmailAndPassword(email, password) }
 	const getCurrentUser = async () => { await firebase.currentUser() }
 	const GetRingitByOwner = async (user) => {
+		setIsLoading(true)
 		await axios.get(`/api/getringitbyowner/${user}`, {
 		})
 		.then(function (response) {
 			let data = response.data
 			setRingit(data)
+			setIsLoading(false)
+
 		})
 		.catch(function (error) {
 			console.log(error);
 		})
 		.finally(function () {
+			setIsLoading(false)
+
 		});
 	}
 	const GetRinkiUsers = async (id) => {
@@ -72,7 +76,6 @@ const Provider = ({children}) => {
 		})
 		.then(function (response) {
 			let data = response.data[0]
-			console.log(data)
 			setRinki(data)
 		})
 		.catch(function (error) {
@@ -95,17 +98,24 @@ const Provider = ({children}) => {
 		await axios.get('/api/getcategories')
 		.then(function (response) {
 			let data = response.data
-			console.log(data)
 			setCategories(data)
 		})
 	}
-		useEffect(() => {
-			const unsubscribe = firebase
-			  .onAuthStateChanged((user) => setUser(user))
-			return () => {
-			  unsubscribe()
-			};
-		  }, []);
+
+
+
+	useEffect(() => {
+		const unsubscribe = firebase.onAuthStateChanged(user => {
+			if (user.email === !null, ringit) {
+				GetRingitByOwner(user.email)
+			  	setUser(user);
+			} else {
+			  	setUser(false);
+
+			}
+		  });
+	  		  return () => unsubscribe();
+		}, [user.email, ringit]);
         return (
             <AppContext.Provider 
                 value={{
@@ -119,6 +129,7 @@ const Provider = ({children}) => {
 					rinki,
 					ringit,                   
 					setIsLoading,
+					isLoading,
 					loadingMessage,
 					categories,
 					getCategories, 
@@ -129,7 +140,8 @@ const Provider = ({children}) => {
 					setRinkiUsers,
 					GetRinkiUsers,
 					error,
-					setError
+					setError,
+					user,
                 }} 
             >
                 {children}

@@ -14,11 +14,11 @@ const Settings = () => {
 	
 
 	return(
-		<Container>
+		<div>
 			<h3>Asetukset</h3>
-			<p>{context.userEmail ? context.userEmail : ""}</p>
+			<p>{context.user.email ? context.user.email : ""}</p>
 			<button onClick={e => context.logout(e) && history.push('/')}>Log out</button>
-		</Container>
+		</div>
 		
 	)
 }

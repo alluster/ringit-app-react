@@ -76,9 +76,10 @@ const SignUp = () => {
 		
 	},[])
 	return(
-		<div onSubmit={e => handleSubmit(e)}>
-			
-				<form  >
+		<div >
+			<h1>Tervetuloa</h1>
+			<h3>Ole hyvä ja rekisteröidy palveluun</h3>
+				<form onSubmit={e => handleSubmit(e)} >
 		
 					<Input placeholder="Email" name="email" value={email} onChange={inputChange} type="text" />
 					<Input placeholder="Salasana" name="password" value={password} onChange={inputChange} type="text" />	

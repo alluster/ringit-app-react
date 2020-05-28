@@ -48,11 +48,11 @@ const Search = () => {
 
 	return(
 		<Layout title="Haku" >
-			<Container>
+			<div>
 				<h3>Etsi rinkejä koodilla:</h3>
 				<Input placeholder="Anna koodi" name="search" type="text" />
 				<SearchButton>Etsi koodilla</SearchButton>
-			</Container>
+			</div>
 		</Layout>
 	)
 }

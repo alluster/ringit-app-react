@@ -55,7 +55,6 @@ const HeroStyled = styled.div`
 const Hero = ({title, ingress, image, children}) => {
     return(
         <HeroStyled>
-            <Container>
                 <Title>
 					{title}
 					<div>
@@ -74,7 +73,6 @@ const Hero = ({title, ingress, image, children}) => {
 						:
 						null
 				}
-            </Container>
         </HeroStyled>
         
     );

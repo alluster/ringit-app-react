@@ -79,12 +79,14 @@ const SignUp = (props) => {
 		}
 	
 	useEffect(() => {
-		
-	},[])
+		if(context.user.email) history.push("/profile")
+	},[context.user.email])
 	return(
-		<div onSubmit={e => handleSubmit(e)}>
+
+		<div >
+			<h1>Kirjaudu sisään</h1>
 			
-				<form  >
+				<form  onSubmit={e => handleSubmit(e)}>
 					<Input placeholder="Email" name="email" value={email} onChange={inputChange} type="text" />
 					<Input placeholder="Salasana" name="password" value={password} onChange={inputChange} type="text" />	
 					<SubmitButton type="submit">Kirjaudu sisään</SubmitButton>
