@@ -106,7 +106,7 @@ const Provider = ({children}) => {
 
 	useEffect(() => {
 		const unsubscribe = firebase.onAuthStateChanged(user => {
-			if (user.email === !null, ringit) {
+			if (user.email, ringit) {
 				GetRingitByOwner(user.email)
 			  	setUser(user);
 			} else {
