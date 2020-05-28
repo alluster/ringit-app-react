@@ -7,12 +7,12 @@ const SQL = require('sql-template-strings')
 const sslRedirect = require('heroku-ssl-redirect');
 const bodyParser = require('body-parser')
 const path = require('path')
-app.use(express.static(path.join(__dirname, 'client/build')));
-// if(process.env.NODE_ENV === 'production') {  
-// 	app.use(express.static(path.join(__dirname, 'client/build')));  
-// 	app.get('*', (req, res) => { 
-// 		res.sendFile('build/index.html', { root: __dirname })	})
-// }
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.use(sslRedirect());
 
 // app.use(bodyParser.json());
