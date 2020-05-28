@@ -8,11 +8,11 @@ const SQL = require('sql-template-strings')
 const bodyParser = require('body-parser')
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'client/build')));
-if(process.env.NODE_ENV === 'production') {  
-	app.use(express.static(path.join(__dirname, 'client/build')));  
-	app.get('*', (req, res) => { 
-		res.sendFile('build/index.html', { root: __dirname })	})
-}
+// if(process.env.NODE_ENV === 'production') {  
+// 	app.use(express.static(path.join(__dirname, 'client/build')));  
+// 	app.get('*', (req, res) => { 
+// 		res.sendFile('build/index.html', { root: __dirname })	})
+// }
 
 
 // app.use(bodyParser.json());

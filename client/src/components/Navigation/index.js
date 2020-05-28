@@ -22,12 +22,12 @@ const Icon = styled(FontAwesomeIcon)`
 `;
 
 const NavContainer = styled.div`
+	position: fixed;
     text-align: center;
     line-height: 40px;
 	min-width: 100%;
 	height: 40px;
 	top: 0;
-	position: relative;
 	margin-bottom: -40px;
 	background-color: white;
 	box-shadow:

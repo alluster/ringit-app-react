@@ -16,7 +16,7 @@ const StyledButton = styled.button `
 	font-size: 20px;
 	padding-left: auto;
 	padding-right: auto;
-	margin-top: 50px;
+	margin-top: 20px;
 	width: 500px;
 		@media (max-width: ${props => props.theme.screenSize.tablet}) {
 			width: 100%;
