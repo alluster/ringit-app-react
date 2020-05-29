@@ -97,6 +97,7 @@ const AddRinki = () => {
 			.then(clearState())
 			.then(alert("Uusi rinki on lisätty"))
 			.then(history.push('/profile'))
+			.then(context.GetRingitByOwner(context.user.email))
 		} 
 		catch (error) {
 			console.error(error.message)

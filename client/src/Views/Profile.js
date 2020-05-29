@@ -86,6 +86,7 @@ const Profile = () => {
 		
 		if(!context.user.email)
 			history.push('/signin')
+			else context.GetRingitByOwner(context.user.email)
 	}, [])
 	return(
 			<div>
@@ -99,7 +100,7 @@ const Profile = () => {
 			}
 				
 					
-						<AddNewButton to="/addrinki">Luo uusi Rinki</AddNewButton>
+						<AddNewButton to="/addrinki" >Luo uusi Rinki</AddNewButton>
 					
 			</div>
 	)
