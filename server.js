@@ -7,19 +7,17 @@ const SQL = require('sql-template-strings')
 const sslRedirect = require('heroku-ssl-redirect');
 const bodyParser = require('body-parser')
 const path = require('path')
-app.use(express.static(path.join(__dirname, '../client/build')));
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
+app.get('*', (req, res) => {
+	res.sendFile(path.join(publicPath, 'index.html'));
+ });
 
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+app.use(bodyParser.json())
 app.use(sslRedirect());
-
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-
-
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 const pool = mysql.createPool({
 	host: process.env.REACT_APP_DATABASE_HOST,
 	user: process.env.REACT_APP_DATABASE_USERNAME,
@@ -176,7 +174,6 @@ app.get('/api/deleteuserfromrinki/:id', (req, res) => {
 	});
 
 })
-
 
 app.listen(process.env.PORT || 5000, 
 	() => console.log("Server is running..."));
