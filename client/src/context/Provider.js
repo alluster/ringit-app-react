@@ -14,7 +14,7 @@ const Provider = ({children}) => {
 	const [ userEmail, setUserEmail ] = useState("")
 	const [ userId, setUserId ] = useState("")
 	const [	error, setError	] = useState("")
-	const [user, setUser] = useState(false);
+	const [user, setUser] = useState({ email: ""});
 
 
 
@@ -32,7 +32,8 @@ const Provider = ({children}) => {
 		 try {
 			await firebase.signOut()
 			await alert("You have been logged out")
-			await setUserEmail("")
+			setUserEmail("")
+			setUser(false)
 		
 	}catch(error) {
 		alert(error.message)
@@ -106,11 +107,11 @@ const Provider = ({children}) => {
 
 	useEffect(() => {
 		const unsubscribe = firebase.onAuthStateChanged(user => {
-			if (user.email, ringit) {
-				GetRingitByOwner(user.email)
-			  	setUser(user);
+			if (user, ringit) { 
+				user &&  GetRingitByOwner(user.email) 
+				user && setUser(user)
 			} else {
-			  	setUser(false);
+			  	setUser({});
 
 			}
 		  });

@@ -50,7 +50,7 @@ const Profile = () => {
 	 
 	
 	const HandleData = () => {
-		if(context.ringit === []) return null
+		if(!context.ringit) return null
 		return (
 			context.ringit.map((item, i) => {
 				return (
